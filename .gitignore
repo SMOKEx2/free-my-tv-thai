@@ -1,0 +1,15 @@
+# User-owned configuration, credentials, ADB authorization, device backups, and signing material
+config.properties
+config.*.properties
+!config.example.properties
+.local/
+*.keystore
+*.jks
+*.idsig
+*.apk
+out/
+dist/
+__pycache__/
+*.pyc
+*.log
+.DS_Store

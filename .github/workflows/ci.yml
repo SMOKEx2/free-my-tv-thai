@@ -1,0 +1,17 @@
+name: Build and test bundled Windows setup
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build public configuration (no TMDB key)
+        shell: powershell
+        run: .\setup.cmd --build-only
+      - name: Test configuration, assets, installer and Java policies
+        shell: powershell
+        run: .\setup.cmd --self-test
