@@ -1,58 +1,71 @@
-# Free My TV Thai 2.0
+# Free My TV Thai
 
-A Thai and English adaptation of [Free My TV](https://github.com/simbasjungles/free-my-tv), focused on Xiaomi Mi Box / TV Box S. A native Android TV Home and screensaver, with readable Thai typography, optional movie recommendations, and reversible advertising/analytics cleanup.
+A personal, bilingual home screen for Android TV, focused on Xiaomi TV Box S and Mi Box.
 
-**Thai translation by FB : Kiw Kiattisak**
+Choose the apps and their order. See recommendations from your own apps, local weather, and a screensaver that follows the time of day. Thai and English are included.
 
-Thai UI credit: **แปลไทยโดย FB : Kiw Kiattisak**
-
-This is an independent adaptation, not an official Xiaomi, Google, Apple, or upstream Free My TV release. The original MIT license and third-party notices are preserved.
-
-## Home screen preview
-
-Example preview of the Thai interface, recommendations, and a configurable streaming-app dock:
+[Install](INSTALL.md) · [AI setup prompt](PROMPT.md) · [Compatibility](docs/COMPATIBILITY.md) · [Recovery](docs/RECOVERY.md) · [Xiaomi ad cleanup](docs/MI_BOX_ADS.md)
 
 ![Free My TV Thai home screen preview with Thai recommendations and streaming app dock](docs/images/free-my-tv-thai-home.png)
 
-## Start here
+## What you get
 
-**Windows 10/11 x64:** download this repository using **Code → Download ZIP**, extract the entire folder, then double-click **`setup.cmd`**. The actual portable ADB, Python, Java compiler/runtime, and Android build files are included in [`tools/bundles/`](tools/bundles/README.md). The script checks their SHA-256 hashes and extracts them locally. No separate tool downloads, Android Studio, WSL, Git Bash, Gradle, pip, or administrator access are required.
+- **Your apps on the home screen.** Choose any installed TV apps and arrange them in your preferred order. Seven apps fit on each page; continue with the remote to reach more.
+- **Thai and English.** Thai interface, weather text, and movie details with Noto Sans Thai. The app credits the translation to **FB : Kiw Kiattisak** in the settings screen.
+- **Recommendations, if you want them.** Trending titles are matched to the streaming apps available in your country. Add your own TMDB key locally; the home screen and app dock work without one.
+- **Weather and daylight.** A local forecast, sunrise and sunset, using Open-Meteo.
+- **A matching screensaver.** Free My TV can become both Home and the screensaver.
+- **Optional Xiaomi ad cleanup.** A small, documented set of ad and analytics packages can be disabled and restored. It does not remove ads inside streaming services.
+- **One place to undo.** Choose **Home Screen → Original** to return to the recorded Home, screensaver, and package states. No system apps are uninstalled.
 
-Your computer and TV must be on the same local network. Enable USB/network debugging on the TV and authorize your computer. The installer asks for your language, city, country, temperature units, optional **own** TMDB key, dock apps and their order, and optional Xiaomi ad cleanup. Choose one, seven, or any number of installed TV apps; the dock shows seven per page.
+This is an independent adaptation of [Free My TV](https://github.com/simbasjungles/free-my-tv), not an official Xiaomi, Google, or streaming-service release. The source retains the upstream MIT license and third-party notices.
 
-- [Detailed installation, upgrades, and troubleshooting](INSTALL.md)
-- [Copy-paste prompt for an AI assistant](PROMPT.md) — includes the questions it must ask first
-- [Compatibility and actual test coverage](docs/COMPATIBILITY.md)
-- [Recovery instructions](docs/RECOVERY.md)
-- [What the optional Xiaomi cleanup changes](docs/MI_BOX_ADS.md)
-- [Version 2.0 changes](CHANGELOG.md)
-- [Tool/font licenses and corresponding source](THIRD_PARTY_NOTICES.md)
+## Install
 
-## What changed in 2.0
+You need an Android TV / Google TV box running **Android 9 or newer** and a computer on the same local network. The main target is Xiaomi TV Box S 3rd Gen. The ready-to-run setup supports Windows 10/11 x64; its actual build tools are included in the repository.
 
-- Thai and English UI, Noto Sans Thai typography, Thai weather/status text, and `th-TH` TMDB recommendations when Thai is selected.
-- Translation credit beneath the version in the settings screen, matching the selected language.
-- User-selected dock apps, ordered and paged instead of a fixed personal seven-app configuration.
-- Native Windows setup/build using the included tool files; Windows APK asset-path normalization fixes missing icons/fonts.
-- Optional conservative Xiaomi ad/analytics cleanup. No system apps are uninstalled. Pre-existing disabled states and recovery records are preserved.
+### The guided way
 
-## TMDB and privacy
+1. On the TV, enable **Developer options → USB debugging**. Find the TV's IP address in Network settings and keep the TV awake.
+2. Download this repository with **Code → Download ZIP** and extract it, or clone it with Git.
+3. Open the folder and run `setup.cmd`. If needed, it asks for the TV's debugging address. You can also start it from PowerShell with:
 
-**This repository contains no TMDB API key.** A key is optional; the launcher and app dock work without recommendations. Create your own at [TMDB API settings](https://www.themoviedb.org/settings/api), then enter it privately in the installer or local `config.properties`. Do not paste it into an AI chat. The public example leaves `tmdb_key=` empty.
+   ```powershell
+   .\setup.cmd --connect TV_IP:5555
+   ```
 
-An APK built with your key contains that key: keep it private. Your configuration, generated source, APKs, signing keys, ADB authorization, TV identifiers and recovery snapshots stay in ignored local paths. Keep `.local/signing/` and `.local/backups/` for upgrades and recovery; never publish them.
+4. Answer the setup questions: language, city/country, temperature units, which installed apps to show and in what order, and whether to enable the optional Xiaomi cleanup. For recommendations, enter **your own** TMDB key in the hidden local prompt. Do not paste it into a chat.
+5. Accept the debugging authorization prompts on the TV. In Free My TV settings, select **Home Screen → Free My TV** to activate it. Then check the Home screen and apps.
 
-## Compatibility in brief
+The installer does not need Android Studio or separate downloads for Python, Java, Android build tools, or ADB. See the [full step-by-step guide](INSTALL.md) for pairing, screenshots, upgrades, troubleshooting, and noninteractive commands. The [AI setup prompt](PROMPT.md) tells an assistant which questions to ask first.
 
-Android TV / Google TV **9 or newer** (minSdk 28, targetSdk 34). Xiaomi TV Box S 3rd Gen / MiTV-AFMU0 on Android 14 is the main target. Android 9–11 keep the upstream rendering and screensaver fallbacks for older Mi Box hardware. A Mi Box 3 still on Android 6/8 cannot install this build. See the compatibility document for what was actually tested; a clean build is not evidence that every firmware was hardware-tested.
-
-For an existing SDK/JDK on another build host, see [source builds](INSTALL.md#source-builds-on-other-hosts). The included ready-to-run binaries are **Windows x64 only**.
-
-## Development
+### Build and test
 
 ```powershell
 .\setup.cmd --build-only
 .\setup.cmd --self-test
 ```
 
-The default build intentionally has no key and no chosen apps; an unconfigured on-TV Home opens the shelf picker. For installation, run the guided setup or supply your own ignored configuration first. App package: `io.freemytv`; version: **2.0**, versionCode **2**.
+A default build contains no TMDB key and no preselected apps. Run the guided setup to build your personal configuration. Each build uses a local signing key; keep `.local/signing/` and `.local/backups/` private so you can update and recover later.
+
+## Compatibility
+
+Free My TV Thai 2.0 requires Android 9 (API 28) or newer. Mi Box 3 devices that remain on Android 6 or 8 are not supported. See [what has and has not been tested](docs/COMPATIBILITY.md): the preceding 1.0 version was observed on a Xiaomi TV Box S 3rd Gen, while 2.0 still needs a fresh on-device and reboot test.
+
+## Going back
+
+On the TV, open Free My TV settings and select **Home Screen → Original**. Keep Free My TV installed until the restore finishes. See [recovery instructions](docs/RECOVERY.md) for interrupted operations and the private computer backup.
+
+## Privacy and services
+
+This repository contains **no TMDB API key**. Recommendations are optional. An APK built with your key contains it, so keep that APK private. Your configuration, signing key, ADB authorization, device details, and recovery backup should stay on your computer.
+
+The app uses TMDB for recommendations and Open-Meteo for weather/geocoding. Those services have their own terms and availability. This product uses the TMDB API but is not endorsed or certified by TMDB.
+
+## Credits and licenses
+
+- Thai translation: **FB : Kiw Kiattisak** (shown in Thai and English in app settings).
+- Original Free My TV source: [MIT-licensed project](https://github.com/simbasjungles/free-my-tv).
+- Fonts and icons keep their own licenses and notices; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+- Xiaomi ad package research: [cleanyourtv Mi Box profiles](docs/MI_BOX_ADS.md). Only the ad cleanup research was used.
+- App package: `io.freemytv` · Version **2.0** (version code 2).
