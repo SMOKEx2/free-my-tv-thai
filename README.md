@@ -8,6 +8,12 @@ Thai UI credit: **แปลไทยโดย FB : Kiw Kiattisak**
 
 This is an independent adaptation, not an official Xiaomi, Google, Apple, or upstream Free My TV release. The original MIT license and third-party notices are preserved.
 
+## Home screen preview
+
+Example preview of the Thai interface, recommendations, and a configurable streaming-app dock:
+
+![Free My TV Thai home screen preview with Thai recommendations and streaming app dock](docs/images/free-my-tv-thai-home.png)
+
 ## Start here
 
 **Windows 10/11 x64:** download this repository using **Code → Download ZIP**, extract the entire folder, then double-click **`setup.cmd`**. The actual portable ADB, Python, Java compiler/runtime, and Android build files are included in [`tools/bundles/`](tools/bundles/README.md). The script checks their SHA-256 hashes and extracts them locally. No separate tool downloads, Android Studio, WSL, Git Bash, Gradle, pip, or administrator access are required.
