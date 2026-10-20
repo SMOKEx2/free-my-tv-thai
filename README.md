@@ -1,10 +1,22 @@
-# Free My TV Thai
+<p align="center">
+  <img src="app/res/drawable-nodpi/icon.png" width="96" alt="Free My TV app icon">
+</p>
 
-A personal, bilingual home screen for Android TV, focused on Xiaomi TV Box S and Mi Box.
+<h1 align="center">Free My TV</h1>
 
-Choose the apps and their order. See recommendations from your own apps, local weather, and a screensaver that follows the time of day. Thai and English are included.
+<p align="center"><strong>Thai Edition · Version 2.0</strong><br>
+A bilingual home screen for Android TV, focused on Xiaomi TV Box S and Mi Box.<br>
+Choose your apps, see recommendations and local weather, and enjoy a matching screensaver.</p>
 
-[Install](INSTALL.md) · [AI setup prompt](PROMPT.md) · [Compatibility](docs/COMPATIBILITY.md) · [Recovery](docs/RECOVERY.md) · [Xiaomi ad cleanup](docs/MI_BOX_ADS.md)
+<p align="center">
+  <a href="INSTALL.md">Install</a> ·
+  <a href="PROMPT.md">AI setup prompt</a> ·
+  <a href="docs/COMPATIBILITY.md">Compatibility</a> ·
+  <a href="docs/RECOVERY.md">Recovery</a> ·
+  <a href="docs/MI_BOX_ADS.md">Xiaomi ad cleanup</a>
+</p>
+
+<hr>
 
 ![Free My TV Thai home screen preview with Thai recommendations and streaming app dock](docs/images/free-my-tv-thai-home.png)
 
